@@ -1,13 +1,14 @@
 class Mouse {
-    constructor(board, x, y, dna = new DNA()) {
+    constructor(board, x, y, targetPoint) {
         this.board = board;
         this.pos = new Vector(x, y)
         this.dead = false;
-        this.dna = dna;
+        this.dna = new DNA();
         this.velocity = new Vector();
         this.acceleration = new Vector();
-        this.score = 0;
-        this.point = board.create('point', [() => { return this.pos.x }, () => { return this.pos.y }], { strokeColor: "#555555", fillColor: "#888888", withLabel: false, size: 3 });
+        this.score = Infinity;
+        this.point = board.create('point', [() => { return this.pos.x }, () => { return this.pos.y }], { showInfobox: false, strokeColor: "#555555", fillColor: "#888888", withLabel: false, size: 3 });
+        this.targetPoint = targetPoint;
     }
 
     die() {
@@ -29,8 +30,13 @@ class Mouse {
             this.velocity.limit(2);
             this.pos.add(this.velocity);
             this.acceleration.mult(0);
-            this.score++;
+            this.calcScore();
         }
+    }
+
+    calcScore() {
+        let dst = this.pos.distance(new Vector(this.targetPoint.X(), this.targetPoint.Y()));
+        this.score = Math.min(this.score, dst);
     }
 
     collision(obstacle) {

@@ -1,5 +1,7 @@
 const constants = {
-    LIFESPAN: 600,
-    MAXFORCE: 0.2,
+    LIFESPAN: 500,
+    MAXFORCE: 0.5,
     POPULATION_SIZE: 300,
+    initialMousePosition: { x: 0, y: 0 },
+    targetPointCoords: [0, -400]
 };

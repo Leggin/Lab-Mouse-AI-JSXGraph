@@ -5,6 +5,10 @@ class Vector {
         this.y = y;
     }
 
+    static getRandomVector() {
+        return new Vector(Math.random(), Math.random());
+    }
+
     getMag() {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
@@ -15,7 +19,6 @@ class Vector {
         let newy = (this.y / mag) * length
         this.x = newx;
         this.y = newy;
-
     }
 
     add(vector) {
@@ -35,8 +38,15 @@ class Vector {
     }
 
     mult(value) {
-        this.x *= this.x;
-        this.y *= this.y;
+        this.x *= value;
+        this.y *= value;
     }
 
+    distance(vector) {
+        let a = Math.pow(vector.x - this.x, 2);
+        let b = Math.pow(vector.y - this.y, 2);
+
+        let result = Math.sqrt(a + b);
+        return result;
+    }
 }
