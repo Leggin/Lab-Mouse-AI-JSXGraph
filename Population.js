@@ -25,15 +25,14 @@ class Population {
         let newPopulation = [];
 
         let sortedPopulation = this.sortPopulation();
-        console.log(this.mice);
-
 
         newPopulation = sortedPopulation.splice(0, Math.ceil(sortedPopulation.length * 0.03));
+
         this.mice = newPopulation.concat(this.breed(newPopulation, sortedPopulation));
         this.mice.forEach(mouse => {
             mouse.dead = false;
             mouse.score = Infinity;
-            if (Math.random() < 0.1)
+            if (Math.random() < 0.7)
                 mouse.dna.mutate();
         });
     }

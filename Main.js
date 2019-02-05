@@ -4,7 +4,8 @@ class Simulation {
         this.obstacles = [];
         this.buildObstacles();
         this.animationPoint = this.board.create('point', [-1, 1], { visible: false });
-        this.targetPoint = this.board.create('point', constants.targetPointCoords, { visible: true, color: "#222222" });
+        this.targetPoint = this.board.create('point', constants.targetPointCoords, { face: "cross", label: "target", visible: true, color: "#222222" });
+        this.targetPoint.setLabelText("Target")
         this.population = new Population(this.board, constants.POPULATION_SIZE, this.targetPoint);
         this.animate = this.animate.bind(this);
         this.animationStep = 0;

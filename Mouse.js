@@ -9,6 +9,7 @@ class Mouse {
         this.score = Infinity;
         this.point = board.create('point', [() => { return this.pos.x }, () => { return this.pos.y }], { showInfobox: false, strokeColor: "#555555", fillColor: "#888888", withLabel: false, size: 3 });
         this.targetPoint = targetPoint;
+        this.width = 16;
     }
 
     die() {
@@ -40,7 +41,7 @@ class Mouse {
     }
 
     collision(obstacle) {
-        if (this.pos.x > obstacle.pos.x && this.pos.x < obstacle.pos.x + obstacle.width && this.pos.y < obstacle.pos.y && this.pos.y > obstacle.pos.y - obstacle.height) {
+        if (this.pos.x + this.width / 2 > obstacle.pos.x && this.pos.x - this.width / 2 < obstacle.pos.x + obstacle.width && this.pos.y - this.width / 2 < obstacle.pos.y && this.pos.y + this.width / 2 > obstacle.pos.y - obstacle.height) {
             return true;
         }
         return false;
