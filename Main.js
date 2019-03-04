@@ -15,15 +15,20 @@ class Simulation {
     }
 
     onMouseDown(e) {
-        let coords = new JXG.Coords(JXG.COORDS_BY_SCREEN, this.board.getMousePosition(e), this.board);
-        if (this.firstClick.flag == true) {
-            this.firstClick.value = [coords.usrCoords[1], coords.usrCoords[2]];
-            this.firstClick.flag = false;
 
-        } else {
-            let blockValues = Utilities.calcObstacle(this.firstClick.value, [coords.usrCoords[1], coords.usrCoords[2]]);
-            this.obstacles.push(new Obstacle(this.board, blockValues[0], blockValues[1], blockValues[2], blockValues[3]));
-            this.firstClick = { flag: true };
+        let coords = new JXG.Coords(JXG.COORDS_BY_SCREEN, this.board.getMousePosition(e), this.board);
+
+        if (!Utilities.coordsSimilar([coords.scrCoords[1], coords.scrCoords[2]], [this.targetPoint.coords.scrCoords[1], this.targetPoint.coords.scrCoords[2]])) {
+
+            if (this.firstClick.flag == true) {
+                this.firstClick.value = [coords.usrCoords[1], coords.usrCoords[2]];
+                this.firstClick.flag = false;
+
+            } else {
+                let blockValues = Utilities.calcObstacle(this.firstClick.value, [coords.usrCoords[1], coords.usrCoords[2]]);
+                this.obstacles.push(new Obstacle(this.board, blockValues[0], blockValues[1], blockValues[2], blockValues[3]));
+                this.firstClick = { flag: true };
+            }
         }
     }
 

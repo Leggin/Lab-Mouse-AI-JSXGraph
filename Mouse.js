@@ -10,6 +10,7 @@ class Mouse {
         this.point = board.create('point', [() => { return this.pos.x }, () => { return this.pos.y }], { showInfobox: false, strokeColor: "#555555", fillColor: "#888888", withLabel: false, size: 3 });
         this.targetPoint = targetPoint;
         this.width = 16;
+
     }
 
     die() {

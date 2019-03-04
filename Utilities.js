@@ -127,10 +127,32 @@ class Utilities {
         let x2 = coordsB[0];
         let y2 = coordsB[1];
 
+        if (x1 > x2) {
+            let tmpx = x1;
+            x1 = x2;
+            x2 = tmpx;
+        }
+
+        if (y1 < y2) {
+            let tmpy = y1;
+            y1 = y2;
+            y2 = tmpy;
+        }
+
+
+
         let w = Math.abs(x2 - x1);
         let h = Math.abs(y2 - y1);
 
         return [x1, y1, w, h];
+    }
+
+    static coordsSimilar(a, b) {
+
+        if (Math.abs(a[0] - b[0]) < 5 && Math.abs(a[0] - b[0]) < 5) {
+            return true;
+        }
+        return false;
     }
 
 
